@@ -7,7 +7,6 @@ function getComputerChoice(){
     // 0 gives us rock,1 gives scissors and else which is now only 2 gives paper;
     let c = Math.abs(Math.floor((Math.random()*10) -1));
     c = Math.floor(c/3);
-    console.log(c);
     if(c===0){
         return "Rock";
     }
@@ -77,6 +76,8 @@ function showResult(c,p){
 }
 
 function playRound(){
+    //We get the computer choice and player choice by invoking the functions and compare in showResult().
+    //We store the result and display it to tell the player what happened.
     let computerChoice = getComputerChoice();
     let playerChoice = getPlayerChoice();
 
@@ -85,6 +86,8 @@ function playRound(){
 }
 
 function playGame(){
+    //This calls the playRound() in a loop.
+    //After the loop is done, we compare the global variables listed below to check who won overall.
     for(i=0;i<5;i++){
         playRound();
         if(humanScore===3){
@@ -94,14 +97,23 @@ function playGame(){
             return console.log("You Lose! Better luck next time :(( ");
         }
     }
-    return console.log("Well! Would you look at that? A Draw.")
+    if(humanScore>computerScore){
+        return console.log("You win!! You bested the Computer!");
+    }
+    else if(computerScore>humanScore){
+        return console.log("You Lose! Better luck next time :(( ");
+    }
+    else{
+        return console.log("Well this is new, A DRAW!! You said the same thing as the machine 5 times in a row!")
+    }
     
 
 }
-
+//The global variables that are accessed by the showResult().
 let humanScore =0;
 let computerScore =0;
 
+//Function to start the game.
 playGame();
 
 
